@@ -1,0 +1,72 @@
+<section id="latest" class="max-w-7xl mx-auto px-6 py-16">
+    <div class="flex items-center justify-between mb-10 border-b border-gray-800 pb-4">
+        <h2 class="text-2xl font-bold font-mono text-black flex items-center gap-2">
+            <span class="text-sky-500">#</span> LATEST_LOGS
+        </h2>
+        <span class="text-xs text-gray-500 font-mono hidden sm:block">
+            COUNT: <% if (locals.posts) { %>
+                <%= posts.length %>
+                    <% } else { %>0<% } %>_ENTRIES
+        </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% if (locals.posts) {%>
+            <% posts.forEach(post=> { %>
+                <article
+                    class="group relative bg-[#161B22] border border-gray-800 rounded-xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 flex flex-col">
+
+                    <div class="absolute top-4 left-4 z-10">
+                        <span
+                            class="bg-sky-500/10 text-sky-400 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter border border-sky-500/20 backdrop-blur-md">
+                            <%= post.category %>
+                        </span>
+                    </div>
+
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors mt-4">
+                            <%= post.title %>
+                        </h3>
+                        <p class="text-gray-400 mt-3 text-sm leading-relaxed line-clamp-3">
+                            <%= post.content %>
+                        </p>
+                    </div>
+
+                    <div class="px-6 py-4 border-t border-gray-800 bg-[#0D1117]/50 flex justify-between items-center">
+                        <a href="/view/<%= post.id %>"
+                            class="text-xs font-bold font-mono text-sky-500 hover:text-sky-400 flex items-center gap-1">
+                            VIEW_ENTRY <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                        <div class="flex">
+                            <svg viewBox="-2.5 0 61 61" xmlns="http://www.w3.org/2000/svg" fill="#FF0000CC">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <defs>
+                                        <filter id="a" width="200%" height="200%" x="-50%" y="-50%"
+                                            filterUnits="objectBoundingBox">
+                                            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1"
+                                                result="shadowBlurOuter1"></feGaussianBlur>
+                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+                                                in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                                            <feMerge>
+                                                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    <path fill-rule="evenodd"
+                                        d="M36 26v10.997c0 1.659-1.337 3.003-3.009 3.003h-9.981c-1.662 0-3.009-1.342-3.009-3.003v-10.997h16zm-2 0v10.998c0 .554-.456 1.002-1.002 1.002h-9.995c-.554 0-1.002-.456-1.002-1.002v-10.998h12zm-9-5c0-.552.451-1 .991-1h4.018c.547 0 .991.444.991 1 0 .552-.451 1-.991 1h-4.018c-.547 0-.991-.444-.991-1zm0 6.997c0-.551.444-.997 1-.997.552 0 1 .453 1 .997v6.006c0 .551-.444.997-1 .997-.552 0-1-.453-1-.997v-6.006zm4 0c0-.551.444-.997 1-.997.552 0 1 .453 1 .997v6.006c0 .551-.444.997-1 .997-.552 0-1-.453-1-.997v-6.006zm-6-5.997h-4.008c-.536 0-.992.448-.992 1 0 .556.444 1 .992 1h18.016c.536 0 .992-.448.992-1 0-.556-.444-1-.992-1h-4.008v-1c0-1.653-1.343-3-3-3h-3.999c-1.652 0-3 1.343-3 3v1z"
+                                        filter="url(#a)"></path>
+                                </g>
+                            </svg>
+                            <span class="text-[10px] text-gray-600 font-mono">ID: <%= post.id.toString().slice(-4) %>
+                                    </span>
+                        </div>
+                    </div>
+                </article>
+                <% }) %>
+                    <% } %>
+    </div>
+</section>
