@@ -99,17 +99,19 @@ npm start
 
 ## 🛠️ Core Features
 
-- **SUDO_NEW_ENTRY**: Create posts via a custom-styled modal interface.  
-- **VIEW_ENTRY**: Read full logs without page reloads using dynamic data injection.  
-- **SYSTEM_DELETE**: Destructive action handling via POST routes and red-glow UI feedback.  
-- **RESPONSIVE_GRID**: Fluid layout transitions from mobile (1-col) to desktop (3-col).  
+- **SUDO_NEW_ENTRY**: Create posts via a custom-styled modal interface.
+- **VIEW_ENTRY**: Read full logs without page reloads using dynamic data injection.
+- **SYSTEM_DELETE**: Destructive action handling via POST routes and red-glow UI feedback.
+- **RESPONSIVE_GRID**: Fluid layout transitions from mobile (1-col) to desktop (3-col).
 - **GLASSMORPHISM**: Modern UI depth using backdrop blurs and subtle borders.
 
 ---
 
 ## 📡 System Status
 
-- **Backend**: Node.js / Express  
-- **Frontend**: EJS / Tailwind CSS v4  
-- **Database**: Local Array (Volatile — Reset on restart)  
-- **Status**: OPERATIONAL  
+- **Backend**: Node.js / Express
+- **Frontend**: EJS / Tailwind CSS v4
+- **Database**: Local Array (Volatile — Reset on restart)
+- **Status**: OPERATIONAL
+
+<video controls src="recording.mov" title="Title"></video>

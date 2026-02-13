@@ -1,32 +1,20 @@
 [
   {
-    "id": 1770999038714,
-    "title": "awd",
-    "content": "awd",
-    "category": "DevOps"
+    "id": 1707834000000,
+    "title": "The Secrets of Express Routing",
+    "content": "Routing is the heart of any Express application. By mastering req.params and req.body, you can create dynamic paths that make your blog feel like a professional web app. Remember to always use absolute paths for your static assets!",
+    "category": "Tech"
   },
   {
-    "id": 1770999102646,
-    "title": "awd",
-    "content": "awd",
-    "category": "DevOps"
+    "id": 1707834060000,
+    "title": "Why I Love JavaScript",
+    "content": "JavaScript allows us to build interactive experiences without constant page reloads. Using fetch() for delete requests is a game changer for user experience. It keeps the user in flow and prevents that annoying white flash on reload.",
+    "category": "Programming"
   },
   {
-    "id": 1770999105002,
-    "title": "awd",
-    "content": "awd",
-    "category": "DevOps"
-  },
-  {
-    "id": 1770999107552,
-    "title": "awd",
-    "content": "awd",
-    "category": "DevOps"
-  },
-  {
-    "id": 1770999110003,
-    "title": "wad",
-    "content": "awd",
-    "category": "DevOps"
+    "id": 1707834120000,
+    "title": "Coffee and Coding",
+    "content": "Is there anything better than a fresh cup of coffee and a clean console with no errors? Today I finally fixed my Nodemon restart issue by ignoring my JSON data file. My background image is finally staying put!",
+    "category": "Lifestyle"
   }
 ]
