@@ -21,3 +21,31 @@ window.addEventListener("click", (e) => {
     document.body.style.overflow = "auto";
   }
 });
+
+const readModal = document.getElementById("readModalOverlay");
+
+function openReadModal(title, category, content, id) {
+  // 1. Inject the data
+  document.getElementById("readTitle").innerText = title;
+  document.getElementById("readCategory").innerText = category;
+  document.getElementById("readContent").innerText = content;
+  document.getElementById("readID").innerText = `ID: ${id}`;
+
+  // 2. Show the modal
+  readModal.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+
+// Close logic
+document.getElementById("closeReadModal").addEventListener("click", closeRead);
+document.getElementById("closeReadBtn").addEventListener("click", closeRead);
+
+function closeRead() {
+  readModal.classList.add("hidden");
+  document.body.style.overflow = "auto";
+}
+
+// Close on clicking background
+readModal.addEventListener("click", (e) => {
+  if (e.target === readModal) closeRead();
+});
