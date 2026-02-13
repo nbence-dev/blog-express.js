@@ -24,16 +24,24 @@ window.addEventListener("click", (e) => {
 
 const readModal = document.getElementById("readModalOverlay");
 
-function openReadModal(title, category, content, id) {
-  // 1. Inject the data
-  document.getElementById("readTitle").innerText = title;
-  document.getElementById("readCategory").innerText = category;
-  document.getElementById("readContent").innerText = content;
-  document.getElementById("readID").innerText = `ID: ${id}`;
-
-  // 2. Show the modal
-  readModal.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
+async function fetchAndShowPost(id) {
+  try {
+    // Send GET req to our new API
+    const response = await fetch(`posts/${id}`);
+    const post = await response.json();
+    // 1. Inject the data
+    document.getElementById("readTitle").innerText = post.title;
+    document.getElementById("readCategory").innerText = post.category;
+    document.getElementById("readContent").innerText = post.content;
+    document.getElementById("readID").innerText =
+      `ID: ${post.id.toString().slice(-4)}`;
+    // 2. Show the modal
+    document.getElementById("readModalOverlay").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  } catch (err) {
+    console.error("Error fetching post: ", err);
+    alert("Error fetching post");
+  }
 }
 
 // Close logic

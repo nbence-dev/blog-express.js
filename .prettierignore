@@ -1,3 +1,2 @@
-footer.ejs   
-header.ejs
-index.ejs
+**/header.ejs
+**/footer.ejs

@@ -1,48 +1,59 @@
 import express from "express";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+import { json } from "stream/consumers";
 
 const port = 3000;
 const app = express();
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
-let posts = [
-  {
-    id: 1,
-    title: "Building a Private Cloud with Proxmox",
-    content:
-      "I finally moved away from standard virtualization. Setting up a Proxmox cluster allows for high availability and better resource management for my home services...",
-    category: "Homelab",
-  },
-  {
-    id: 2,
-    title: "Why Tailwind v4 is a Game Changer",
-    content:
-      "The move to a CSS-first approach means less time fiddling with JavaScript config files and more time writing actual styles. The speed of the new @tailwindcss/cli is impressive.",
-    category: "Frontend",
-  },
-  {
-    id: 3,
-    title: "Hardening SSH Access",
-    content:
-      "Stop using passwords for SSH. In this log, I cover generating Ed25519 keys, changing default ports, and setting up Fail2Ban to block brute-force attempts.",
-    category: "Security",
-  },
-  {
-    id: 4,
-    title: "Dockerizing an Express.js App",
-    content:
-      "Consistency across environments is key. I've created a slim Dockerfile using the Alpine Node image to keep my deployment footprint under 100MB.",
-    category: "DevOps",
-  },
-  {
-    id: 5,
-    title: "Automating Backups with Rclone",
-    content:
-      "Data that isn't backed up doesn't exist. I'm using Rclone to sync my local NAS storage to an encrypted S3 bucket every night at 03:00.",
-    category: "Automation",
-  },
-];
+const __fileName = fileURLToPath(import.meta.url);
+const __dirname = dirname(__fileName);
+const filePath = path.join(__dirname, "data", "data.json");
+
+const getPostsData = () => {
+  console.log(filePath);
+  const jsonData = fs.readFileSync(filePath);
+  return JSON.parse(jsonData);
+};
+
 app.get("/", (req, res) => {
-  res.render("index.ejs", { posts: posts });
+  try {
+    const posts = getPostsData();
+    res.render("index.ejs", { posts: posts });
+  } catch (err) {
+    console.error("Error loading posts: ", err);
+    res.render("index.ejs");
+  }
+});
+
+app.get("/posts/:id", (req, res) => {
+  const postId = req.params.id;
+
+  const posts = getPostsData();
+  const post = posts.find((p) => p.id == postId);
+
+  if (post) {
+    res.json(post);
+  } else {
+    res.status(404).json({ error: "Post not found" });
+  }
+});
+
+app.post("/delete/:id", (req, res) => {
+  const postId = req.params.id;
+  try {
+    const posts = getPostsData();
+    const updatedPosts = posts.filter((p) => p.id != postId);
+    fs.writeFileSync(filePath, JSON.stringify(updatedPosts, null, 2));
+    console.log(`Log entry: ${postId} has been deleted`);
+    res.redirect("/");
+  } catch (err) {
+    console.error("Critical error during deletion: ", err);
+    res.status(500).send("System failed to delete an entry");
+  }
 });
 
 app.listen(port, () => {
