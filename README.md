@@ -91,7 +91,7 @@ To simplify your workflow, update the `scripts` object in your `package.json`:
 Run with:
 
 ```bash
-npm run dev:css
+npm run css
 npm start
 ```
 
@@ -114,4 +114,8 @@ npm start
 - **Database**: Local Array (Volatile — Reset on restart)
 - **Status**: OPERATIONAL
 
-<video controls src="recording.mov" title="Title"></video>
+
+
+https://github.com/user-attachments/assets/ec3aac69-4b04-490a-b533-12615ebe1086
+
+
