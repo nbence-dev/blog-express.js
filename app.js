@@ -29,6 +29,31 @@ app.get("/", (req, res) => {
   }
 });
 
+app.post("/compose", (req, res) => {
+  try {
+    const postTitle = req.body.postTitle;
+    const postCategory = req.body.postCategory;
+    const postContent = req.body.postContent;
+
+    const posts = getPostsData();
+    const newPost = {
+      id: Date.now(),
+      title: postTitle,
+      content: postContent,
+      category: postCategory,
+    };
+    console.log(newPost);
+    posts.push(newPost);
+    fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+    res.redirect("/");
+  } catch (err) {
+    console.err("Error creating new post: ", err);
+    res.status(500).send("System error: Could not save entry");
+  }
+
+  app.redirect("/");
+});
+
 app.get("/posts/:id", (req, res) => {
   const postId = req.params.id;
 

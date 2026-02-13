@@ -39,7 +39,7 @@
                         </button>
 
                         <div class="flex items-center gap-1">
-                            <form action="/delete/<%= post.id %>" method="POST" class="inline-flex items-center">
+                            <form action="/delete/<%= post.id %>" method="POST" class="inline-flex items-center" onsubmit="return confirm('WARNING: You are about to delete this entry. Proceed?')">
                                 <button type="submit"
                                     class="group/del rounded-md flex items-center justify-center cursor-pointer"
                                     title="Delete Entry">
