@@ -14,7 +14,6 @@ const __dirname = dirname(__fileName);
 const filePath = path.join(__dirname, "data", "data.json");
 
 const getPostsData = () => {
-  console.log(filePath);
   const jsonData = fs.readFileSync(filePath);
   return JSON.parse(jsonData);
 };
@@ -45,13 +44,12 @@ app.post("/compose", (req, res) => {
     console.log(newPost);
     posts.push(newPost);
     fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+
     res.redirect("/");
   } catch (err) {
     console.err("Error creating new post: ", err);
     res.status(500).send("System error: Could not save entry");
   }
-
-  app.redirect("/");
 });
 
 app.get("/posts/:id", (req, res) => {
@@ -67,14 +65,14 @@ app.get("/posts/:id", (req, res) => {
   }
 });
 
-app.post("/delete/:id", (req, res) => {
+app.delete("/delete/:id", (req, res) => {
   const postId = req.params.id;
   try {
     const posts = getPostsData();
     const updatedPosts = posts.filter((p) => p.id != postId);
     fs.writeFileSync(filePath, JSON.stringify(updatedPosts, null, 2));
     console.log(`Log entry: ${postId} has been deleted`);
-    res.redirect("/");
+    res.status(200).json({ success: true }); // DO THIS
   } catch (err) {
     console.error("Critical error during deletion: ", err);
     res.status(500).send("System failed to delete an entry");

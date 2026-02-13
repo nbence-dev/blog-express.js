@@ -57,3 +57,21 @@ function closeRead() {
 readModal.addEventListener("click", (e) => {
   if (e.target === readModal) closeRead();
 });
+
+async function deletePost(id) {
+  if (!confirm("Are you sure you want to delete this post?")) return;
+  try {
+    const response = await fetch(`delete/${id}`, { method: "DELETE" });
+    console.log(response);
+    if (response.ok) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    } else {
+      alert("Failed to delete post");
+    }
+  } catch (err) {
+    console.error("Network error: ", err);
+    alert("Network error has occurred");
+  }
+}
