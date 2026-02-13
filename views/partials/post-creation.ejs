@@ -1,0 +1,74 @@
+<div
+  id="modalOverlay"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center bg-[#0D1117]/80 backdrop-blur-sm p-4"
+>
+  <div
+    class="bg-[#161B22] border border-gray-700 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
+  >
+    <div
+      class="px-6 py-4 border-b border-gray-800 bg-[#0D1117]/50 flex justify-between items-center"
+    >
+      <h3 class="text-sky-500 font-mono font-bold tracking-tighter">
+        CREATE::NEW_LOG_ENTRY
+      </h3>
+      <button
+        id="closeModal"
+        class="text-gray-500 hover:text-white transition-colors text-2xl"
+      >
+        &times;
+      </button>
+    </div>
+
+    <form action="/compose" method="POST" class="p-6 space-y-4">
+      <div>
+        <label class="block text-xs font-mono text-gray-500 mb-1"
+          >ENTRY_TITLE</label
+        >
+        <input
+          type="text"
+          name="postTitle"
+          required
+          placeholder="e.g., Dockerizing the API"
+          class="w-full bg-[#0D1117] border border-gray-800 rounded px-4 py-2 text-white focus:outline-none focus:border-sky-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-mono text-gray-500 mb-1"
+          >CATEGORY</label
+        >
+        <select
+          name="postCategory"
+          class="w-full bg-[#0D1117] border border-gray-800 rounded px-4 py-2 text-white focus:outline-none focus:border-sky-500 appearance-none"
+        >
+          <option value="DevOps">DevOps</option>
+          <option value="Security">Security</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Homelab">Homelab</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-mono text-gray-500 mb-1"
+          >LOG_CONTENT</label
+        >
+        <textarea
+          name="postContent"
+          required
+          rows="5"
+          placeholder="Document the process..."
+          class="w-full bg-[#0D1117] border border-gray-800 rounded px-4 py-2 text-white focus:outline-none focus:border-sky-500 transition-colors resize-none"
+        ></textarea>
+      </div>
+
+      <div class="pt-2">
+        <button
+          type="submit"
+          class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded transition-all font-mono"
+        >
+          EXECUTE_COMMIT
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

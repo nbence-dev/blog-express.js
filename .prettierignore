@@ -1,1 +1,3 @@
-*.ejs
+footer.ejs   
+header.ejs
+index.ejs
